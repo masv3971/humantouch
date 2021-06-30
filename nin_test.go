@@ -1,7 +1,6 @@
 package humantouch
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
@@ -24,8 +23,6 @@ func TestLuhn(t *testing.T) {
 	}
 
 	want.LuhnNumber.S = "2"
-	fmt.Println("lun", got.LuhnNumber.S, want.LuhnNumber.S)
-
 	got.luhn(p)
 
 	if diff := cmp.Diff(want.LuhnNumber.S, got.LuhnNumber.S); diff != "" {

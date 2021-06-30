@@ -77,15 +77,15 @@ func ExampleNew_random() {
 	})
 
 	randomDist, _ := human.Distrubution.RandomHumans(50)
-	fmt.Println(randomDist[0].Firstname)
+	fmt.Println("randomDist", randomDist[0].Firstname)
 
 	randoms, _ := human.RandomHumans(50)
-	fmt.Println(randoms[0].Firstname)
+	fmt.Println("randoms", randoms[0].Firstname)
 
 	random, _ := human.RandomHuman()
-	fmt.Println(random.Firstname)
+	fmt.Println("randomHuman", random.Firstname)
 	// Output:
-	// TestFemaleName
-	// TestFemaleName
-	// TestFemaleName
+	// randomDist TestFemaleName
+	// randoms TestFemaleName
+	// randomHuman TestFemaleName
 }

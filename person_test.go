@@ -1,7 +1,6 @@
 package humantouch
 
 import (
-	"fmt"
 	"math/rand"
 	"testing"
 	"time"
@@ -133,7 +132,6 @@ func TestSetGender(t *testing.T) {
 
 	for _, tt := range tts {
 		tt.have.p.setGender(tt.have.gender)
-		fmt.Println("Genderr", tt.have.p.Gender.General)
 		if tt.have.p.Gender.General != tt.want[0] && tt.have.p.Gender.General != tt.want[1] {
 			t.Errorf("Name:%q, want: %s/%s got: %s", tt.name, tt.want[0], tt.want[1], tt.have.p.Gender.General)
 		}

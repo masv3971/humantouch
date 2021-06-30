@@ -74,12 +74,13 @@ func (d *Distrubution) newWithDistrubution(gender string, n int) ([]*Person, err
 	}
 
 	for _, year := range years {
+		gender = d.createGender(gender)
 		p := &Person{}
 		p.setYear(year)
 		p.setMonth()
 		p.setDay()
 		p.setAge()
-		p.setGender(d.createGender(gender))
+		p.setGender(gender)
 		p.setName(gender)
 
 		persons = append(persons, p)
