@@ -1,0 +1,10 @@
+module humantouch
+
+go 1.16
+
+require (
+	github.com/bearbin/go-age v0.0.0-20210220235509-f0fa00c278ce
+	github.com/google/go-cmp v0.5.6
+	github.com/milosgajdos/go-estimate v0.1.1 // indirect
+	github.com/patrickmn/go-cache v2.1.0+incompatible
+)
