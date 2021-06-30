@@ -57,6 +57,9 @@ func ExampleNew_random() {
 	FirstnamesFemale = []string{}
 	FirstnamesFemale = append(FirstnamesFemale, "TestFemaleName")
 
+	FirstnamesMale = []string{}
+	FirstnamesMale = append(FirstnamesMale, "TestFemaleName")
+
 	human, _ := New(&Config{
 		DistrubutionCFG: &DistrubutionCfg{
 			Age0to10: AgeData{
