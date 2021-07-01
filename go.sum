@@ -13,6 +13,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fogleman/gg v1.2.1-0.20190220221249-0403632d5b90/go.mod h1:R/bRT+9gY/C5z7JzPU0zXsXHKM4/ayA+zqcVNZzPa1k=
 github.com/fogleman/gg v1.3.0/go.mod h1:R/bRT+9gY/C5z7JzPU0zXsXHKM4/ayA+zqcVNZzPa1k=
+github.com/frozzare/go-assert v1.1.0 h1:JaWK+Q2bFyVyE8dpUNtqh0P9CFAwtQhTiKZiwJ8R+Mc=
+github.com/frozzare/go-assert v1.1.0/go.mod h1:qaUtLVkASIEqsHEn8xhGKLh+24s1y07Y88Z5mNyHgWU=
 github.com/go-fonts/dejavu v0.1.0/go.mod h1:4Wt4I4OU2Nq9asgDCteaAaWZOV24E+0/Pwo0gppep4g=
 github.com/go-fonts/latin-modern v0.2.0/go.mod h1:rQVLdDMK+mK1xscDwsqM5J8U2jrRa3T0ecnM9pNujks=
 github.com/go-fonts/liberation v0.1.1/go.mod h1:K6qoJYypsmfVjWg8KOVDQhLc8UDgIK2HYqyqAO9z7GY=
@@ -36,6 +38,8 @@ github.com/milosgajdos/go-estimate v0.1.1/go.mod h1:pclD5Xs0TOXSfb2rSFyLf33zd10n
 github.com/milosgajdos/matrix v0.0.1/go.mod h1:nwsbBAQ4Z39KwGp0YbTK6gnuM9bFyVmwGJKizDeI7BY=
 github.com/patrickmn/go-cache v2.1.0+incompatible h1:HRMgzkcYKYpi3C8ajMPV8OFXaaRUnok+kx1WdO15EQc=
 github.com/patrickmn/go-cache v2.1.0+incompatible/go.mod h1:3Qf8kWWT7OJRJbdiICTKqZju1ZixQ/KpMGzzAfe6+WQ=
+github.com/personnummer/go v1.1.0 h1:laamyYf7IxhYO2D2R6RO4Rt88ppVeFcbgYwJJMwRlJk=
+github.com/personnummer/go v1.1.0/go.mod h1:whMH7x0z0bEqJfN2shfAm4emY4pe0KhJYAGBxXJcEvs=
 github.com/phpdave11/gofpdf v1.4.2/go.mod h1:zpO6xFn9yxo3YLyMvW8HcKWVdbNqgIfOOp2dXMnm1mY=
 github.com/phpdave11/gofpdi v1.0.12/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/7bXwjDoI=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

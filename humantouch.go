@@ -32,9 +32,16 @@ func New(config *Config) (*Client, error) {
 		return nil, err
 	}
 
-	c.Distrubution, err = newDistrubutionClient(config)
-	if err != nil {
-		return nil, err
+	if config == nil {
+		c.Distrubution, err = newDistrubutionClient(&Config{})
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		c.Distrubution, err = newDistrubutionClient(config)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	c.person, err = newPersonClient()

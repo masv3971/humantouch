@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	personnummer "github.com/personnummer/go"
 )
 
 func TestLuhn(t *testing.T) {
@@ -184,6 +185,74 @@ func TestSetComplete_12(t *testing.T) {
 
 		if diff := cmp.Diff(tt.want, tt.have.nin.Complete); diff != "" {
 			t.Errorf("Name: %q, mismatch (-want +got):\n%s", tt.name, diff)
+		}
+	}
+}
+
+func TestValidateNIN(t *testing.T) {
+	human, err := New(nil)
+	if err != nil {
+		t.Error(err)
+	}
+
+	persons, err := human.Females(59)
+	if err != nil {
+		t.Error(err)
+	}
+
+	for _, person := range persons {
+		if !personnummer.Valid(person.SocialSecurityNumber.Swedish10.Complete) {
+			t.Error("Not valid personnummer", person.SocialSecurityNumber.Swedish10.Complete)
+		}
+	}
+}
+
+func TestValidateNINDist(t *testing.T) {
+	human, err := New(&Config{
+		DistrubutionCFG: &DistrubutionCfg{
+			Age0to10: AgeData{
+				Weight: 100,
+				id:     0,
+			},
+		},
+	})
+	if err != nil {
+		t.Error(err)
+	}
+
+	persons, err := human.Distrubution.Females(50)
+	if err != nil {
+		t.Error(err)
+	}
+
+	for _, person := range persons {
+		if !personnummer.Valid(person.SocialSecurityNumber.Swedish10.Complete) {
+			t.Error("Not valid personnummer", person.SocialSecurityNumber.Swedish10.Complete)
+		}
+	}
+}
+
+func TestValidateNINDist_10(t *testing.T) {
+	human, err := New(&Config{
+		DistrubutionCFG: &DistrubutionCfg{
+			Age100to110: AgeData{
+				Weight: 100,
+				id:     10,
+			},
+		},
+	})
+	if err != nil {
+		t.Error(err)
+	}
+
+	persons, err := human.Distrubution.Females(50)
+	if err != nil {
+		t.Error(err)
+	}
+
+	for _, person := range persons {
+		if !personnummer.Valid(person.SocialSecurityNumber.Swedish10.Complete) {
+			t.Error("Not valid personnummer", person.SocialSecurityNumber.Swedish10.Complete)
 		}
 	}
 }
