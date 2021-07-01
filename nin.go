@@ -42,22 +42,10 @@ func (c *ninClient) birthNumber(gender string) BirthNumber {
 	bn.N2s = strconv.Itoa(bn.N2i)
 
 	// this can be stuck, theoretical at least.
-	if gender == GenderMale {
-		for {
-			n3 := rand.Intn(9)
-			if n3%2 != 0 {
-				bn.N3i = n3
-				break
-			}
-		}
+	if gender == GenderFemale {
+		bn.N3i = []int{0,2,4,6,8}[rand.Intn(5)]
 	} else {
-		for {
-			n3 := rand.Intn(9)
-			if n3%2 == 0 {
-				bn.N3i = n3
-				break
-			}
-		}
+		bn.N3i = []int{1,3,5,7,9}[rand.Intn(5)]
 	}
 
 	bn.N3s = strconv.Itoa(bn.N3i)
