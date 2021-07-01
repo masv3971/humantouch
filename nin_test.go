@@ -220,7 +220,7 @@ func TestValidateNINDist(t *testing.T) {
 		t.Error(err)
 	}
 
-	persons, err := human.Distrubution.Females(50)
+	persons, err := human.Distribution.Females(50)
 	if err != nil {
 		t.Error(err)
 	}
@@ -245,7 +245,7 @@ func TestValidateNINDist_10(t *testing.T) {
 		t.Error(err)
 	}
 
-	persons, err := human.Distrubution.Females(50)
+	persons, err := human.Distribution.Females(50)
 	if err != nil {
 		t.Error(err)
 	}

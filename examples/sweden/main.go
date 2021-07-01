@@ -35,7 +35,7 @@ func main() {
 	populationOfSweden := 10099265
 
 	start := time.Now()
-	_, err = person.RandomHumans(populationOfSweden)
+	_, err = person.Distrubution.RandomHumans(populationOfSweden)
 	if err != nil {
 		panic(err)
 	}

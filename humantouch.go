@@ -17,7 +17,7 @@ var (
 type Client struct {
 	nin          *ninClient
 	person       *personClient
-	Distrubution *Distrubution
+	Distribution *Distribution
 }
 
 // Config holds configuration for humantouch
@@ -37,12 +37,12 @@ func New(config *Config) (*Client, error) {
 	}
 
 	if config == nil {
-		c.Distrubution, err = newDistrubutionClient(&Config{})
+		c.Distribution, err = newDistributionClient(&Config{})
 		if err != nil {
 			return nil, err
 		}
 	} else {
-		c.Distrubution, err = newDistrubutionClient(config)
+		c.Distribution, err = newDistributionClient(config)
 		if err != nil {
 			return nil, err
 		}

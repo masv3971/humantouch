@@ -12,12 +12,12 @@ func TestCreateYears(t *testing.T) {
 	}
 	tts := []struct {
 		name string
-		have *Distrubution
+		have *Distribution
 		want want
 	}{
 		{
 			name: "0-10",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age0to10: AgeData{
 						Weight: 100,
@@ -32,7 +32,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "10-20",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age10to20: AgeData{
 						Weight: 100,
@@ -47,7 +47,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "20-30",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age20to30: AgeData{
 						Weight: 100,
@@ -62,7 +62,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "30-40",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age30to40: AgeData{
 						Weight: 100,
@@ -77,7 +77,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "40-50",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age40to50: AgeData{
 						Weight: 100,
@@ -92,7 +92,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "50-60",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age50to60: AgeData{
 						Weight: 100,
@@ -107,7 +107,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "60-70",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age60to70: AgeData{
 						Weight: 100,
@@ -122,7 +122,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "70-80",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age70to80: AgeData{
 						Weight: 100,
@@ -137,7 +137,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "80-90",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age80to90: AgeData{
 						Weight: 100,
@@ -152,7 +152,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "90-100",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age90to100: AgeData{
 						Weight: 100,
@@ -167,7 +167,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "100-110",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age100to110: AgeData{
 						Weight: 100,
@@ -182,7 +182,7 @@ func TestCreateYears(t *testing.T) {
 		},
 		{
 			name: "0-20",
-			have: &Distrubution{
+			have: &Distribution{
 				Age: &DistributionCfg{
 					Age0to10: AgeData{
 						Weight: 100,
@@ -225,7 +225,7 @@ func TestRandomHumans(t *testing.T) {
 			},
 		},
 	})
-	randHumans, err := c.Distrubution.RandomHumans(50)
+	randHumans, err := c.Distribution.RandomHumans(50)
 	if err != nil {
 		t.Error("randHumans error", err)
 	}

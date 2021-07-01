@@ -22,13 +22,13 @@ type DistributionCfg struct {
 	Age100to110 AgeData
 }
 
-// Distrubution holds both Person and AgeDistrubution
-type Distrubution struct {
+// Distribution holds both Person and AgeDistrubution
+type Distribution struct {
 	Age *DistributionCfg
 	nin *ninClient
 }
 
-func newDistrubutionClient(cfg *Config) (*Distrubution, error) {
+func newDistributionClient(cfg *Config) (*Distribution, error) {
 	if cfg == nil {
 		return nil, ErrAgeDistrubutionNotConfigured
 	}
@@ -37,7 +37,7 @@ func newDistrubutionClient(cfg *Config) (*Distrubution, error) {
 		return nil, err
 	}
 
-	c := &Distrubution{
+	c := &Distribution{
 		Age: cfg.DistrubutionCFG,
 		nin: nin,
 	}
@@ -46,8 +46,8 @@ func newDistrubutionClient(cfg *Config) (*Distrubution, error) {
 }
 
 // Females return females according with the distrubution
-func (d *Distrubution) Females(n int) ([]*Person, error) {
-	p, err := d.newWithDistrubution(GenderFemale, n)
+func (d *Distribution) Females(n int) ([]*Person, error) {
+	p, err := d.newWithDistribution(GenderFemale, n)
 	if err != nil {
 		return nil, err
 	}
@@ -55,8 +55,8 @@ func (d *Distrubution) Females(n int) ([]*Person, error) {
 }
 
 // Males return males according with the distrubution
-func (d *Distrubution) Males(n int) ([]*Person, error) {
-	p, err := d.newWithDistrubution(GenderMale, n)
+func (d *Distribution) Males(n int) ([]*Person, error) {
+	p, err := d.newWithDistribution(GenderMale, n)
 	if err != nil {
 		return nil, err
 	}
@@ -64,8 +64,8 @@ func (d *Distrubution) Males(n int) ([]*Person, error) {
 }
 
 // RandomHumans return random humans according with the distrubution
-func (d *Distrubution) RandomHumans(n int) ([]*Person, error) {
-	p, err := d.newWithDistrubution("", n)
+func (d *Distribution) RandomHumans(n int) ([]*Person, error) {
+	p, err := d.newWithDistribution("", n)
 	if err != nil {
 		return nil, err
 	}
@@ -73,7 +73,7 @@ func (d *Distrubution) RandomHumans(n int) ([]*Person, error) {
 
 }
 
-func (d *Distrubution) newWithDistrubution(gender string, n int) ([]*Person, error) {
+func (d *Distribution) newWithDistribution(gender string, n int) ([]*Person, error) {
 	var persons = []*Person{}
 
 	years, err := d.createYears(n)
@@ -99,7 +99,7 @@ func (d *Distrubution) newWithDistrubution(gender string, n int) ([]*Person, err
 	return persons, nil
 }
 
-func (d *Distrubution) createGender(gender string) string {
+func (d *Distribution) createGender(gender string) string {
 	random := rand.New(rand.NewSource(time.Now().Unix()))
 
 	if gender == "" {
@@ -113,7 +113,7 @@ func (d *Distrubution) createGender(gender string) string {
 	return gender
 }
 
-func (d *Distrubution) createYears(numberOfTimes int) ([]int, error) {
+func (d *Distribution) createYears(numberOfTimes int) ([]int, error) {
 	random := rand.New(rand.NewSource(time.Now().Unix()))
 	var p []float64
 	d.Age.Age0to10.id = 0

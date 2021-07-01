@@ -43,9 +43,9 @@ func ExampleNew() {
 
 	fmt.Println(female.Firstname, male.Firstname, females[0].Firstname, males[0].Firstname)
 
-	femaleDist, _ := human.Distrubution.Females(50)
+	femaleDist, _ := human.Distribution.Females(50)
 
-	maleDist, _ := human.Distrubution.Males(50)
+	maleDist, _ := human.Distribution.Males(50)
 
 	fmt.Println(femaleDist[0].Firstname, maleDist[0].Firstname)
 	// Output:
@@ -69,7 +69,7 @@ func ExampleNew_random() {
 		},
 	})
 
-	randomDist, _ := human.Distrubution.RandomHumans(50)
+	randomDist, _ := human.Distribution.RandomHumans(50)
 	fmt.Println("randomDist", randomDist[0].Firstname)
 
 	randoms, _ := human.RandomHumans(50)
