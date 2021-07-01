@@ -2,10 +2,15 @@ package main
 
 import (
 	"fmt"
-	"humantouch"
+	"math/rand"
+	"time"
+
+	"github.com/masv3971/humantouch"
 )
 
 func main() {
+	rand.Seed(time.Now().Unix())
+
 	human, err := humantouch.New(&humantouch.Config{
 		DistrubutionCFG: &humantouch.DistrubutionCfg{
 			Age0to10: humantouch.AgeData{

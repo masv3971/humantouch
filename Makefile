@@ -2,7 +2,6 @@
 
 NAME 					:= humantouch
 VERSION                 := $(shell cat VERSION)
-LDFLAGS                 := -ldflags "-w -s --extldflags '-static'"
 
 default: release-patch
 
@@ -29,4 +28,4 @@ push-tag:
 		git push origin ${VERSION}
 
 go-list:	
-		GOPROXY=proxy.golang.org go list -m github.com/masv3971/humantouch@${VERSION}
+		GOPROXY=proxy.golang.org go list -m github.com/masv3971/${NAME}@${VERSION}
