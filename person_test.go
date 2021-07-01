@@ -6,8 +6,11 @@ import (
 )
 
 func init() {
-	//rand.NewSource(time.Now().Unix())
 	rand.Seed(42)
+}
+
+func diffError(t *testing.T, name, diff string) {
+	t.Errorf("Name:%s mismatch (-want +got):\n%s", name, diff)
 }
 
 var TestPerson = &Person{
@@ -47,10 +50,6 @@ var TestSwedishNIN = &SwedishNIN{
 	},
 	LuhnNumber: LuhnNumber{},
 	Complete:   "",
-}
-
-func diffError(t *testing.T, name, diff string) {
-	t.Errorf("Name:%s mismatch (-want +got):\n%s", name, diff)
 }
 
 func TestSetDay(t *testing.T) {

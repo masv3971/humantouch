@@ -148,13 +148,13 @@ func (p *Person) setYear(year int) {
 
 	p.BirthYear.SLong = strconv.Itoa(p.BirthYear.ILong)
 
-	p.BirthYear.S = p.BirthYear.SLong[:2]
+	p.BirthYear.S = p.BirthYear.SLong[2:]
 	p.BirthYear.I, err = strconv.Atoi(p.BirthYear.S)
 	if err != nil {
 		panic(err)
 	}
 
-	p.BirthYear.CenturyS = p.BirthYear.SLong[2:]
+	p.BirthYear.CenturyS = p.BirthYear.SLong[:2]
 	p.BirthYear.CenturyI, err = strconv.Atoi(p.BirthYear.CenturyS)
 	if err != nil {
 		panic(err)
@@ -165,7 +165,6 @@ func (p *Person) setYear(year int) {
 }
 
 func (p *Person) setMonth() {
-
 	p.BirthMonth.I = rand.Intn(12-1) + 1
 	if p.BirthMonth.I < 10 {
 		p.BirthMonth.S = fmt.Sprintf("0%d", p.BirthMonth.I)
@@ -175,7 +174,6 @@ func (p *Person) setMonth() {
 }
 
 func (p *Person) setDay() {
-
 	p.BirthDay.I = rand.Intn(months[p.BirthMonth.I]-1) + 1
 	if p.BirthDay.I < 10 {
 		p.BirthDay.S = fmt.Sprintf("0%d", p.BirthDay.I)
@@ -193,12 +191,12 @@ func (p *Person) setName(gender string) {
 	p.Lastname = Lastnames[rand.Intn(len(Lastnames))]
 }
 
-func (c *personClient) randomGender() string {
-	switch rand.Intn(1) {
-	case 0:
-		return GenderFemale
-	case 1:
-		return GenderMale
-	}
-	return ""
-}
+//func (c *personClient) randomGender() string {
+//	switch rand.Intn(1) {
+//	case 0:
+//		return GenderFemale
+//	case 1:
+//		return GenderMale
+//	}
+//	return ""
+//}
