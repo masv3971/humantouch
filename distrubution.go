@@ -25,14 +25,21 @@ type DistrubutionCfg struct {
 // Distrubution holds both Person and AgeDistrubution
 type Distrubution struct {
 	Age *DistrubutionCfg
+	nin *ninClient
 }
 
 func newDistrubutionClient(cfg *Config) (*Distrubution, error) {
 	if cfg == nil {
 		return nil, ErrAgeDistrubutionNotConfigured
 	}
+	nin, err := newNINClient()
+	if err != nil {
+		return nil, err
+	}
+
 	c := &Distrubution{
 		Age: cfg.DistrubutionCFG,
+		nin: nin,
 	}
 
 	return c, nil
@@ -76,6 +83,7 @@ func (d *Distrubution) newWithDistrubution(gender string, n int) ([]*Person, err
 
 	for _, year := range years {
 		gender = d.createGender(gender)
+
 		p := &Person{}
 		p.setYear(year)
 		p.setMonth()
@@ -83,6 +91,8 @@ func (d *Distrubution) newWithDistrubution(gender string, n int) ([]*Person, err
 		p.setAge()
 		p.setGender(gender)
 		p.setName(gender)
+
+		p.SocialSecurityNumber = d.nin.newSwedish(p)
 
 		persons = append(persons, p)
 	}
