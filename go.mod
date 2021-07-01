@@ -1,4 +1,5 @@
-module humantouch
+module github.com/masv3971/humantouch
+
 
 go 1.16
 
