@@ -215,3 +215,22 @@ func TestCreateYears(t *testing.T) {
 		}
 	}
 }
+
+func TestRandomHumans(t *testing.T) {
+	c, _ := New(&Config{
+		DistrubutionCFG: &DistrubutionCfg{
+			Age0to10: AgeData{
+				Weight: 100,
+				id:     0,
+			},
+		},
+	})
+	randHumans, err := c.Distrubution.RandomHumans(50)
+	if err != nil {
+		t.Error("randHumans error", err)
+	}
+
+	if randHumans[0].Firstname == randHumans[1].Firstname {
+		t.Error("RandHumans has the same firstname", randHumans[0].Firstname, randHumans[1].Firstname)
+	}
+}

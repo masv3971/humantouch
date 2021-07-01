@@ -66,16 +66,6 @@ func ExampleNew_random() {
 				Weight: 100,
 				id:     0,
 			},
-			Age10to20:   AgeData{},
-			Age20to30:   AgeData{},
-			Age30to40:   AgeData{},
-			Age40to50:   AgeData{},
-			Age50to60:   AgeData{},
-			Age60to70:   AgeData{},
-			Age70to80:   AgeData{},
-			Age80to90:   AgeData{},
-			Age90to100:  AgeData{},
-			Age100to110: AgeData{},
 		},
 	})
 

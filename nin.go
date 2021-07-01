@@ -2,8 +2,10 @@ package humantouch
 
 import (
 	"fmt"
+	"math/rand"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type ninClient struct {
@@ -34,6 +36,8 @@ type BirthNumber struct {
 }
 
 func (c *ninClient) birthNumber(gender string) BirthNumber {
+	random := rand.New(rand.NewSource(time.Now().Unix()))
+
 	bn := BirthNumber{}
 	bn.N1i = random.Intn(9)
 	bn.N2i = random.Intn(9)

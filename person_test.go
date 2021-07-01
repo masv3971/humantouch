@@ -3,11 +3,11 @@ package humantouch
 import (
 	"math/rand"
 	"testing"
-	"time"
 )
 
 func init() {
-	rand.NewSource(time.Now().Unix())
+	//rand.NewSource(time.Now().Unix())
+	rand.Seed(42)
 }
 
 var TestPerson = &Person{
@@ -135,5 +135,21 @@ func TestSetGender(t *testing.T) {
 		if tt.have.p.Gender.General != tt.want[0] && tt.have.p.Gender.General != tt.want[1] {
 			t.Errorf("Name:%q, want: %s/%s got: %s", tt.name, tt.want[0], tt.want[1], tt.have.p.Gender.General)
 		}
+	}
+}
+
+func TestSetName(t *testing.T) {
+	tts := []struct {
+		name string
+		have *Person
+	}{
+		{
+			name: "female",
+			have: &Person{},
+		},
+	}
+
+	for _, tt := range tts {
+		tt.have.setName(GenderFemale)
 	}
 }

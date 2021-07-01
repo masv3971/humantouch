@@ -1,8 +1,6 @@
 package humantouch
 
 import (
-	"crypto/sha256"
-	"encoding/json"
 	"fmt"
 	"math/rand"
 	"strconv"
@@ -140,8 +138,7 @@ func (p *Person) setAge() {
 }
 
 func (c *personClient) createYear() int {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
-	return random.Intn(yearMax-yearMin+1) + yearMin
+	return rand.Intn(yearMax-yearMin+1) + yearMin
 }
 
 func (p *Person) setYear(year int) {
@@ -168,9 +165,8 @@ func (p *Person) setYear(year int) {
 }
 
 func (p *Person) setMonth() {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
 
-	p.BirthMonth.I = random.Intn(12-1) + 1
+	p.BirthMonth.I = rand.Intn(12-1) + 1
 	if p.BirthMonth.I < 10 {
 		p.BirthMonth.S = fmt.Sprintf("0%d", p.BirthMonth.I)
 	} else {
@@ -179,9 +175,8 @@ func (p *Person) setMonth() {
 }
 
 func (p *Person) setDay() {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
 
-	p.BirthDay.I = random.Intn(months[p.BirthMonth.I]-1) + 1
+	p.BirthDay.I = rand.Intn(months[p.BirthMonth.I]-1) + 1
 	if p.BirthDay.I < 10 {
 		p.BirthDay.S = fmt.Sprintf("0%d", p.BirthDay.I)
 	} else {
@@ -190,29 +185,16 @@ func (p *Person) setDay() {
 }
 
 func (p *Person) setName(gender string) {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
-
 	if gender == GenderFemale {
-		p.Firstname = FirstnamesFemale[random.Intn(len(FirstnamesFemale))]
+		p.Firstname = FirstnamesFemale[rand.Intn(len(FirstnamesFemale))]
 	} else if gender == GenderMale {
-		p.Firstname = FirstnamesMale[random.Intn(len(FirstnamesMale))]
+		p.Firstname = FirstnamesMale[rand.Intn(len(FirstnamesMale))]
 	}
-	p.Lastname = Lastnames[random.Intn(len(Lastnames))]
-}
-
-func (p *Person) hash() (string, error) {
-	jsonBytes, err := json.Marshal(p)
-	if err != nil {
-		return "", err
-	}
-	h := sha256.Sum256(jsonBytes)
-	s := fmt.Sprintf("%x", h)
-	return s, nil
+	p.Lastname = Lastnames[rand.Intn(len(Lastnames))]
 }
 
 func (c *personClient) randomGender() string {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
-	switch random.Intn(1) {
+	switch rand.Intn(1) {
 	case 0:
 		return GenderFemale
 	case 1:

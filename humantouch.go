@@ -2,15 +2,12 @@ package humantouch
 
 import (
 	"errors"
-	"math/rand"
-	"time"
 )
 
 var (
 	// ErrAgeDistrubutionNotConfigured error about not configured age distrubution
 	ErrAgeDistrubutionNotConfigured = errors.New("ERR_AGE_DISTRUBUTION_NOT_CONFIGURED")
 )
-var random = rand.New(rand.NewSource(time.Now().Unix()))
 
 // Client holds humantouch object
 type Client struct {

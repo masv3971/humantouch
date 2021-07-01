@@ -1,6 +1,7 @@
 package humantouch
 
 import (
+	"math/rand"
 	"time"
 
 	rand2 "github.com/milosgajdos/go-estimate/rand"
@@ -89,6 +90,8 @@ func (d *Distrubution) newWithDistrubution(gender string, n int) ([]*Person, err
 }
 
 func (d *Distrubution) createGender(gender string) string {
+	random := rand.New(rand.NewSource(time.Now().Unix()))
+
 	if gender == "" {
 		switch r := random.Intn(1); {
 		case r == 0:
@@ -101,18 +104,19 @@ func (d *Distrubution) createGender(gender string) string {
 }
 
 func (d *Distrubution) createYears(numberOfTimes int) ([]int, error) {
+	random := rand.New(rand.NewSource(time.Now().Unix()))
 	var p []float64
-	d.Age.Age0to10.id = 1
-	d.Age.Age10to20.id = 2
-	d.Age.Age20to30.id = 3
-	d.Age.Age30to40.id = 4
-	d.Age.Age40to50.id = 5
-	d.Age.Age50to60.id = 6
-	d.Age.Age60to70.id = 7
-	d.Age.Age70to80.id = 8
-	d.Age.Age80to90.id = 9
-	d.Age.Age90to100.id = 10
-	d.Age.Age100to110.id = 11
+	d.Age.Age0to10.id = 0
+	d.Age.Age10to20.id = 1
+	d.Age.Age20to30.id = 2
+	d.Age.Age30to40.id = 3
+	d.Age.Age40to50.id = 4
+	d.Age.Age50to60.id = 5
+	d.Age.Age60to70.id = 6
+	d.Age.Age70to80.id = 7
+	d.Age.Age80to90.id = 8
+	d.Age.Age90to100.id = 9
+	d.Age.Age100to110.id = 10
 
 	p = append(p, d.Age.Age0to10.Weight)
 	p = append(p, d.Age.Age10to20.Weight)
