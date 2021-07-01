@@ -1,17 +1,9 @@
 package humantouch
 
 import (
-	"errors"
 	"time"
 
 	cache "github.com/patrickmn/go-cache"
-)
-
-var (
-	// ErrKeyCollide error for a key that collide
-	ErrKeyCollide = errors.New("ERR_KEY_COLLIDE")
-	// ErrNoKey error for key that does not exists
-	ErrNoKey = errors.New("ERR_NO_KEY")
 )
 
 type storeClient struct {

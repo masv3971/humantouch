@@ -7,6 +7,10 @@ import (
 var (
 	// ErrAgeDistrubutionNotConfigured error about not configured age distrubution
 	ErrAgeDistrubutionNotConfigured = errors.New("ERR_AGE_DISTRUBUTION_NOT_CONFIGURED")
+	// ErrKeyCollide error for a key that collide
+	ErrKeyCollide = errors.New("ERR_KEY_COLLIDE")
+	// ErrNoKey error for key that does not exists
+	ErrNoKey = errors.New("ERR_NO_KEY")
 )
 
 // Client holds humantouch object
