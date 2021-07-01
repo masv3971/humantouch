@@ -59,3 +59,131 @@ func TestDelimiter(t *testing.T) {
 		t.Error("Delimiter should be -", have.Delimiter)
 	}
 }
+
+func TestSetComplete(t *testing.T) {
+	type have struct {
+		nin *SwedishNIN
+		p   *Person
+	}
+	tts := []struct {
+		name string
+		have have
+		want string
+	}{
+		{
+			name: "OK",
+			have: have{
+				nin: &SwedishNIN{
+					BirthNumber: BirthNumber{
+						N1s:      "1",
+						N2s:      "2",
+						N3s:      "3",
+						N1i:      1,
+						N2i:      2,
+						N3i:      3,
+						Complete: "123",
+					},
+					LuhnNumber: LuhnNumber{
+						S: "4",
+						I: 4,
+					},
+					Complete:  "",
+					Delimiter: "-",
+				},
+				p: &Person{
+					BirthYear: BirthYear{
+						S:            "85",
+						I:            85,
+						SLong:        "1985",
+						ILong:        1985,
+						CenturyLongS: "1900",
+						CenturyLongI: 1900,
+						CenturyS:     "19",
+						CenturyI:     19,
+					},
+					BirthMonth: BirthMonth{
+						S: "01",
+						I: 1,
+					},
+					BirthDay: BirthDay{
+						S: "02",
+						I: 2,
+					},
+				},
+			},
+			want: "850102-1234",
+		},
+	}
+
+	for _, tt := range tts {
+		tt.have.nin.setComplet(tt.have.p)
+
+		if diff := cmp.Diff(tt.want, tt.have.nin.Complete); diff != "" {
+			t.Errorf("Name: %q, mismatch (-want +got):\n%s", tt.name, diff)
+		}
+	}
+}
+
+func TestSetComplete_12(t *testing.T) {
+	type have struct {
+		nin *SwedishNIN
+		p   *Person
+	}
+	tts := []struct {
+		name string
+		have have
+		want string
+	}{
+		{
+			name: "OK",
+			have: have{
+				nin: &SwedishNIN{
+					BirthNumber: BirthNumber{
+						N1s:      "1",
+						N2s:      "2",
+						N3s:      "3",
+						N1i:      1,
+						N2i:      2,
+						N3i:      3,
+						Complete: "123",
+					},
+					LuhnNumber: LuhnNumber{
+						S: "4",
+						I: 4,
+					},
+					Complete:  "",
+					Delimiter: "-",
+				},
+				p: &Person{
+					BirthYear: BirthYear{
+						S:            "85",
+						I:            85,
+						SLong:        "1985",
+						ILong:        1985,
+						CenturyLongS: "1900",
+						CenturyLongI: 1900,
+						CenturyS:     "19",
+						CenturyI:     19,
+					},
+					BirthMonth: BirthMonth{
+						S: "01",
+						I: 1,
+					},
+					BirthDay: BirthDay{
+						S: "02",
+						I: 2,
+					},
+				},
+			},
+			want: "19850102-1234",
+		},
+	}
+
+	for _, tt := range tts {
+		tt.have.nin.setComplete12(tt.have.p)
+
+		if diff := cmp.Diff(tt.want, tt.have.nin.Complete); diff != "" {
+			t.Errorf("Name: %q, mismatch (-want +got):\n%s", tt.name, diff)
+		}
+	}
+}

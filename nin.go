@@ -5,7 +5,6 @@ import (
 	"math/rand"
 	"strconv"
 	"strings"
-	"time"
 )
 
 type ninClient struct {
@@ -36,18 +35,16 @@ type BirthNumber struct {
 }
 
 func (c *ninClient) birthNumber(gender string) BirthNumber {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
-
 	bn := BirthNumber{}
-	bn.N1i = random.Intn(9)
-	bn.N2i = random.Intn(9)
+	bn.N1i = rand.Intn(9)
+	bn.N2i = rand.Intn(9)
 	bn.N1s = strconv.Itoa(bn.N1i)
 	bn.N2s = strconv.Itoa(bn.N2i)
 
 	// this can be stuck, theoretical at least.
 	if gender == GenderMale {
 		for {
-			n3 := random.Intn(9)
+			n3 := rand.Intn(9)
 			if n3%2 != 0 {
 				bn.N3i = n3
 				break
@@ -55,7 +52,7 @@ func (c *ninClient) birthNumber(gender string) BirthNumber {
 		}
 	} else {
 		for {
-			n3 := random.Intn(9)
+			n3 := rand.Intn(9)
 			if n3%2 == 0 {
 				bn.N3i = n3
 				break
@@ -124,11 +121,11 @@ func (s *SwedishNIN) delimiter(age int) {
 }
 
 func (s *SwedishNIN) setComplet(p *Person) {
-	s.Complete = fmt.Sprintf("%d%d%d%s%s%d", p.BirthYear.I, p.BirthMonth.I, p.BirthDay.I, s.Delimiter, s.BirthNumber.Complete, s.LuhnNumber.I)
+	s.Complete = fmt.Sprintf("%s%s%s%s%s%d", p.BirthYear.S, p.BirthMonth.S, p.BirthDay.S, s.Delimiter, s.BirthNumber.Complete, s.LuhnNumber.I)
 }
 
 func (s *SwedishNIN) setComplete12(p *Person) {
-	s.Complete = fmt.Sprintf("%d%d%d%s%s%d", p.BirthYear.ILong, p.BirthMonth.I, p.BirthDay.I, s.Delimiter, s.BirthNumber.Complete, s.LuhnNumber.I)
+	s.Complete = fmt.Sprintf("%s%s%s%s%s%d", p.BirthYear.SLong, p.BirthMonth.S, p.BirthDay.S, s.Delimiter, s.BirthNumber.Complete, s.LuhnNumber.I)
 }
 
 //func (c *ninClient) femaleSwedish10(person *Person) *SwedishNIN {
