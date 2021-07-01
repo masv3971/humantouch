@@ -13,7 +13,7 @@ func ExampleNew() {
 	FirstnamesMale = append(FirstnamesMale, "TestMaleName")
 
 	human, _ := New(&Config{
-		DistrubutionCFG: &DistrubutionCfg{
+		DistrubutionCFG: &DistributionCfg{
 			Age0to10: AgeData{
 				Weight: 100,
 				id:     0,
@@ -61,7 +61,7 @@ func ExampleNew_random() {
 	FirstnamesMale = append(FirstnamesMale, "TestFemaleName")
 
 	human, _ := New(&Config{
-		DistrubutionCFG: &DistrubutionCfg{
+		DistrubutionCFG: &DistributionCfg{
 			Age0to10: AgeData{
 				Weight: 100,
 				id:     0,

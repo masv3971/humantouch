@@ -209,7 +209,7 @@ func TestValidateNIN(t *testing.T) {
 
 func TestValidateNINDist(t *testing.T) {
 	human, err := New(&Config{
-		DistrubutionCFG: &DistrubutionCfg{
+		DistrubutionCFG: &DistributionCfg{
 			Age0to10: AgeData{
 				Weight: 100,
 				id:     0,
@@ -234,7 +234,7 @@ func TestValidateNINDist(t *testing.T) {
 
 func TestValidateNINDist_10(t *testing.T) {
 	human, err := New(&Config{
-		DistrubutionCFG: &DistrubutionCfg{
+		DistrubutionCFG: &DistributionCfg{
 			Age100to110: AgeData{
 				Weight: 100,
 				id:     10,

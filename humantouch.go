@@ -23,7 +23,7 @@ type Client struct {
 // Config holds configuration for humantouch
 type Config struct {
 	//Person *PersonConfig
-	DistrubutionCFG *DistrubutionCfg
+	DistrubutionCFG *DistributionCfg
 }
 
 // New creates a new instance of humantouch

@@ -7,8 +7,8 @@ import (
 	rand2 "github.com/milosgajdos/go-estimate/rand"
 )
 
-// DistrubutionCfg holds configuration regarding the age distrubution
-type DistrubutionCfg struct {
+// DistributionCfg holds configuration regarding the age distrubution
+type DistributionCfg struct {
 	Age0to10    AgeData
 	Age10to20   AgeData
 	Age20to30   AgeData
@@ -24,7 +24,7 @@ type DistrubutionCfg struct {
 
 // Distrubution holds both Person and AgeDistrubution
 type Distrubution struct {
-	Age *DistrubutionCfg
+	Age *DistributionCfg
 	nin *ninClient
 }
 

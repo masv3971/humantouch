@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	// This will generate the population of Sweden symetric between gender.
+	// This will generate the population of Sweden symmetrical according to gender distribution.
 	// It will take about 4,5m to run on my M1 macbook Air 2021, and consume about 9,5Gb of memory.
 	rand.Seed(time.Now().Unix())
 
