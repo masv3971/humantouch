@@ -100,10 +100,8 @@ func (d *Distribution) newWithDistribution(gender string, n int) ([]*Person, err
 }
 
 func (d *Distribution) createGender(gender string) string {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
-
 	if gender == "" {
-		switch r := random.Intn(1); {
+		switch r := rand.Intn(1); {
 		case r == 0:
 			return GenderFemale
 		case r == 1:
@@ -114,7 +112,6 @@ func (d *Distribution) createGender(gender string) string {
 }
 
 func (d *Distribution) createYears(numberOfTimes int) ([]int, error) {
-	random := rand.New(rand.NewSource(time.Now().Unix()))
 	var p []float64
 	d.Age.Age0to10.id = 0
 	d.Age.Age10to20.id = 1
@@ -151,7 +148,7 @@ func (d *Distribution) createYears(numberOfTimes int) ([]int, error) {
 		yearMax := yearNow - min
 		yearMin := yearNow - max
 
-		years = append(years, random.Intn(yearMax-yearMin+1)+yearMin)
+		years = append(years, rand.Intn(yearMax-yearMin+1)+yearMin)
 	}
 
 	for _, i := range draws {
