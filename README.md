@@ -1,6 +1,7 @@
 # Humantouch
 
-[![GoDoc](https://pkg.go.dev/github.com/masv3971/humantouch?status.svg)](https://pkg.go.dev/github.com/masv3971/humantouch)
+[![Go Reference](https://pkg.go.dev/badge/pkg.go.dev/github.com/masv3971/humantouch.svg)](https://pkg.go.dev/pkg.go.dev/github.com/masv3971/humantouch)
+
 
 ## Installation
 
