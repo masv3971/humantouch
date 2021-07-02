@@ -7,3 +7,19 @@
 ```
 go get -u github.com/masv3971/humantouch
 ```
+
+## Example
+```go
+package main
+
+import (
+    "github.com/masv3971/humantouch"
+)
+
+func main() {
+    person, _ := humantouch.New(nil)
+
+    person.RandomHuman()
+    // *Person
+}
+```
