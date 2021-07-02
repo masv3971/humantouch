@@ -17,6 +17,9 @@ import (
 )
 
 func main() {
+    // Always seed rand!
+	rand.Seed(time.Now().Unix())
+
     person, _ := humantouch.New(nil)
 
     person.RandomHuman()

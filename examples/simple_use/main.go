@@ -9,10 +9,7 @@ import (
 )
 
 func main() {
-	// This will generate the population of Sweden symetric between gender.
-	// It will take about 4,5m to run on my M1 macbook Air 2021, and consume about 9,5Gb of memory.
 	rand.Seed(time.Now().Unix())
-
 	person, err := humantouch.New(&humantouch.Config{
 		DistrubutionCFG: &humantouch.DistributionCfg{
 			Age0to10:    humantouch.AgeData{Weight: 65},
@@ -105,8 +102,8 @@ func main() {
 	for _, f := range f5 {
 		fmt.Println(f.Age)
 		fmt.Println(f.Firstname, f.Lastname)
-		//fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
-		//fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
+		fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
+		fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
 		fmt.Println(f.Gender.General)
 	}
 
