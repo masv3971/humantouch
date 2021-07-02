@@ -120,9 +120,7 @@ func (c *personClient) new(gender string) *Person {
 }
 
 func (p *Person) setGender(gender string) {
-	if gender == "" {
-		gender = randomGender()
-	}
+	gender = randomGender(gender)
 
 	if gender == GenderFemale {
 		p.Gender.General = GenderFemale
@@ -165,7 +163,7 @@ func (p *Person) setYear(year int) {
 }
 
 func (p *Person) setMonth() {
-	p.BirthMonth.I = rand.Intn(12-1) + 1
+	p.BirthMonth.I = rand.Intn(month(time.Now().Month())-1) + 1
 	if p.BirthMonth.I < 10 {
 		p.BirthMonth.S = fmt.Sprintf("0%d", p.BirthMonth.I)
 	} else {

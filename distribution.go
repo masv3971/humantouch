@@ -82,15 +82,16 @@ func (d *Distribution) newWithDistribution(gender string, n int) ([]*Person, err
 	}
 
 	for _, year := range years {
-		gender = d.createGender(gender)
+		//g := d.createGender(gender)
+		g := randomGender(gender)
 
 		p := &Person{}
 		p.setYear(year)
 		p.setMonth()
 		p.setDay()
 		p.setAge()
-		p.setGender(gender)
-		p.setName(gender)
+		p.setGender(g)
+		p.setName(g)
 
 		p.SocialSecurityNumber = d.nin.newSwedish(p)
 
@@ -99,17 +100,17 @@ func (d *Distribution) newWithDistribution(gender string, n int) ([]*Person, err
 	return persons, nil
 }
 
-func (d *Distribution) createGender(gender string) string {
-	if gender == "" {
-		switch r := rand.Intn(1); {
-		case r == 0:
-			return GenderFemale
-		case r == 1:
-			return GenderMale
-		}
-	}
-	return gender
-}
+//func (d *Distribution) createGender(gender string) string {
+//	if gender == "" {
+//		switch r := rand.Intn(1); {
+//		case r == 0:
+//			return GenderFemale
+//		case r == 1:
+//			return GenderMale
+//		}
+//	}
+//	return gender
+//}
 
 func (d *Distribution) createYears(numberOfTimes int) ([]int, error) {
 	var p []float64

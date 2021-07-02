@@ -1,13 +1,13 @@
 package humantouch
 
 import (
-	"math/rand"
 	"testing"
+	"time"
 )
 
-func init() {
-	rand.Seed(42)
-}
+//func init() {
+//	rand.Seed(42)
+//}
 
 func diffError(t *testing.T, name, diff string) {
 	t.Errorf("Name:%s mismatch (-want +got):\n%s", name, diff)
@@ -75,6 +75,9 @@ func TestSetMonth(t *testing.T) {
 
 		if p.BirthMonth.I > 12 || p.BirthMonth.I < 1 {
 			t.Fatal("Error not in interval", p.BirthMonth.I)
+		}
+		if time.Month(p.BirthMonth.I) > time.Now().Month() {
+			t.Error("Error before present month")
 		}
 	}
 

@@ -73,7 +73,7 @@ func (c *Client) Male() (*Person, error) {
 
 // RandomHuman return all kinds of humans, full span of age and gender
 func (c *Client) RandomHuman() (*Person, error) {
-	switch r := randomGender(); r {
+	switch r := randomGender(""); r {
 	case GenderFemale:
 		human, err := c.Female()
 		if err != nil {

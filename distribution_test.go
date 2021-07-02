@@ -1,9 +1,15 @@
 package humantouch
 
 import (
+	"fmt"
+	"math/rand"
 	"testing"
 	"time"
 )
+
+func init() {
+	rand.Seed(time.Now().Unix())
+}
 
 func TestCreateYears(t *testing.T) {
 	type want struct {
@@ -233,4 +239,43 @@ func TestRandomHumans(t *testing.T) {
 	if randHumans[0].Firstname == randHumans[1].Firstname {
 		t.Error("RandHumans has the same firstname", randHumans[0].Firstname, randHumans[1].Firstname)
 	}
+	for _, rh := range randHumans {
+		if rh.Age < 0 {
+			t.Error("Age is negative", rh.Age, rh.SocialSecurityNumber.Swedish10.Complete)
+		}
+	}
+}
+
+func TestGenderDistribution(t *testing.T) {
+	c, _ := New(&Config{
+		DistrubutionCFG: &DistributionCfg{
+			Age0to10: AgeData{
+				Weight: 100,
+				id:     0,
+			},
+			Age10to20:   AgeData{},
+			Age20to30:   AgeData{},
+			Age30to40:   AgeData{},
+			Age40to50:   AgeData{},
+			Age50to60:   AgeData{},
+			Age60to70:   AgeData{},
+			Age70to80:   AgeData{},
+			Age80to90:   AgeData{},
+			Age90to100:  AgeData{},
+			Age100to110: AgeData{},
+		},
+	})
+
+	genders := map[string]int{}
+
+	rh, err := c.Distribution.RandomHumans(1000)
+	if err != nil {
+		t.Error(err)
+	}
+	for _, r := range rh {
+		genders[r.Gender.General]++
+	}
+
+	fmt.Println(genders[GenderFemale], genders[GenderMale])
+
 }
