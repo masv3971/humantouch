@@ -100,18 +100,6 @@ func (d *Distribution) newWithDistribution(gender string, n int) ([]*Person, err
 	return persons, nil
 }
 
-//func (d *Distribution) createGender(gender string) string {
-//	if gender == "" {
-//		switch r := rand.Intn(1); {
-//		case r == 0:
-//			return GenderFemale
-//		case r == 1:
-//			return GenderMale
-//		}
-//	}
-//	return gender
-//}
-
 func (d *Distribution) createYears(numberOfTimes int) ([]int, error) {
 	var p []float64
 	d.Age.Age0to10.id = 0

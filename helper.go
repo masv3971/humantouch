@@ -18,7 +18,7 @@ func randomGender(gender string) string {
 }
 
 func month(month time.Month) int {
-	switch m := time.Now().Month(); m {
+	switch m := month; m {
 	case time.Month(1):
 		return 1
 	case time.Month(2):

@@ -188,13 +188,3 @@ func (p *Person) setName(gender string) {
 	}
 	p.Lastname = Lastnames[rand.Intn(len(Lastnames))]
 }
-
-//func (c *personClient) randomGender() string {
-//	switch rand.Intn(1) {
-//	case 0:
-//		return GenderFemale
-//	case 1:
-//		return GenderMale
-//	}
-//	return ""
-//}

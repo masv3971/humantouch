@@ -1,7 +1,7 @@
 package humantouch
 
 import (
-	"fmt"
+	"math"
 	"math/rand"
 	"testing"
 	"time"
@@ -266,9 +266,9 @@ func TestGenderDistribution(t *testing.T) {
 		},
 	})
 
-	genders := map[string]int{}
-
-	rh, err := c.Distribution.RandomHumans(1000)
+	genders := map[string]float64{}
+	n := 1000
+	rh, err := c.Distribution.RandomHumans(n)
 	if err != nil {
 		t.Error(err)
 	}
@@ -276,6 +276,7 @@ func TestGenderDistribution(t *testing.T) {
 		genders[r.Gender.General]++
 	}
 
-	fmt.Println(genders[GenderFemale], genders[GenderMale])
-
+	if math.Abs(genders[GenderFemale]-genders[GenderMale]) > float64(n)*float64(0.05) {
+		t.Errorf("Error, gender distribution is too narrow, female:%f, male:%f", genders[GenderFemale], genders[GenderMale])
+	}
 }
