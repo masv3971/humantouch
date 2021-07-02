@@ -14,7 +14,7 @@ func main() {
 	rand.Seed(time.Now().Unix())
 
 	person, err := humantouch.New(&humantouch.Config{
-		DistrubutionCFG: &humantouch.DistrubutionCfg{
+		DistrubutionCFG: &humantouch.DistributionCfg{
 			Age0to10:    humantouch.AgeData{Weight: 65},
 			Age10to20:   humantouch.AgeData{Weight: 60},
 			Age20to30:   humantouch.AgeData{Weight: 63},
@@ -35,7 +35,7 @@ func main() {
 	populationOfSweden := 10099265
 
 	start := time.Now()
-	_, err = person.Distrubution.RandomHumans(populationOfSweden)
+	_, err = person.Distribution.RandomHumans(populationOfSweden)
 	if err != nil {
 		panic(err)
 	}

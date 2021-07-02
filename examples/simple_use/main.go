@@ -9,9 +9,11 @@ import (
 )
 
 func main() {
+	// This will generate the population of Sweden symetric between gender.
+	// It will take about 4,5m to run on my M1 macbook Air 2021, and consume about 9,5Gb of memory.
 	rand.Seed(time.Now().Unix())
 
-	human, err := humantouch.New(&humantouch.Config{
+	person, err := humantouch.New(&humantouch.Config{
 		DistrubutionCFG: &humantouch.DistributionCfg{
 			Age0to10:    humantouch.AgeData{Weight: 65},
 			Age10to20:   humantouch.AgeData{Weight: 60},
@@ -30,71 +32,114 @@ func main() {
 		panic(err)
 	}
 
-	// Female ignores DistributionCfg, return female human, or error
-	female, err := human.Female()
+	f0, err := person.Distribution.Females(50)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** DIST FEMALE")
+	for _, f := range f0 {
+		fmt.Println(f.Age)
+		fmt.Println(f.Firstname, f.Lastname)
+		fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
+		fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
+		fmt.Println(f.Gender.General)
+	}
 
-	// Male ingnores DistributionCfg, return a male human, or error
-	male, err := human.Male()
+	f1, err := person.Distribution.Males(50)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** DIST MALE")
+	for _, f := range f1 {
+		fmt.Println(f.Age)
+		fmt.Println(f.Firstname, f.Lastname)
+		fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
+		fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
+		fmt.Println(f.Gender.General)
+	}
 
-	// RandomHuman ignores DistributionCfg, return a human, or error
-	person, err := human.RandomHuman()
+	f2, err := person.Distribution.RandomHumans(50)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** DIST RANDOM HUMANS")
+	for _, f := range f2 {
+		fmt.Println(f.Age)
+		fmt.Println(f.Firstname, f.Lastname)
+		fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
+		fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
+		fmt.Println(f.Gender.General)
+	}
 
-	// Females ignores DistributionCfg, return 50 female humans, or error
-	females, err := human.Females(50)
+	f3, err := person.Females(50)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** FEMALES")
+	for _, f := range f3 {
+		fmt.Println(f.Age)
+		fmt.Println(f.Firstname, f.Lastname)
+		fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
+		fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
+		fmt.Println(f.Gender.General)
+	}
 
-	// Males ignores DistributionCfg, return 50 male humans
-	males, err := human.Males(50)
+	f4, err := person.Males(50)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** MALES")
+	for _, f := range f4 {
+		fmt.Println(f.Age)
+		fmt.Println(f.Firstname, f.Lastname)
+		fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
+		fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
+		fmt.Println(f.Gender.General)
+	}
 
-	// RandomHumans ignores DistributionCfg, return 50 humans, or error
-	persons, err := human.RandomHumans(50)
+	f5, err := person.RandomHumans(50)
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** RANDOMHUMANS")
+	for _, f := range f5 {
+		fmt.Println(f.Age)
+		fmt.Println(f.Firstname, f.Lastname)
+		//fmt.Println(f.SocialSecurityNumber.Swedish12.Complete)
+		//fmt.Println(f.SocialSecurityNumber.Swedish10.Complete)
+		fmt.Println(f.Gender.General)
+	}
 
-	// RandomHumasn return 50 humans according to the distribution
-	personsDist, err := human.Distrubution.RandomHumans(50)
+	f6, err := person.RandomHuman()
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** RANDOMHUMAN")
+	fmt.Println(f6.Age)
+	fmt.Println(f6.Firstname, f6.Lastname)
+	fmt.Println(f6.SocialSecurityNumber.Swedish12.Complete)
+	fmt.Println(f6.SocialSecurityNumber.Swedish10.Complete)
+	fmt.Println(f6.Gender.General)
 
-	// Females return 50 females according to the distribution
-	femalesDist, err := human.Distrubution.Females(50)
+	f7, err := person.Male()
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("************** MALE")
+	fmt.Println(f7.Age)
+	fmt.Println(f7.Firstname, f7.Lastname)
+	fmt.Println(f7.SocialSecurityNumber.Swedish12.Complete)
+	fmt.Println(f7.SocialSecurityNumber.Swedish10.Complete)
+	fmt.Println(f7.Gender.General)
 
-	// Males return 50 males according to the distribution
-	malesDist, err := human.Distrubution.Males(50)
+	f8, err := person.Female()
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Println(female.Firstname,
-		male.Firstname,
-		female.Firstname,
-		person.Firstname,
-
-		females[0].Firstname,
-		males[0].Firstname,
-		persons[0].Firstname,
-
-		personsDist[0].Firstname,
-		femalesDist[0].Firstname,
-		malesDist[0].Firstname,
-	)
+	fmt.Println("************** FEMALE")
+	fmt.Println(f8.Age)
+	fmt.Println(f8.Firstname, f8.Lastname)
+	fmt.Println(f8.SocialSecurityNumber.Swedish12.Complete)
+	fmt.Println(f8.SocialSecurityNumber.Swedish10.Complete)
+	fmt.Println(f8.Gender.General)
 }
