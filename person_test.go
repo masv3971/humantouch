@@ -1,13 +1,14 @@
 package humantouch
 
 import (
+	"math/rand"
 	"testing"
 	"time"
 )
 
-//func init() {
-//	rand.Seed(42)
-//}
+func init() {
+	rand.Seed(time.Now().Unix())
+}
 
 func diffError(t *testing.T, name, diff string) {
 	t.Errorf("Name:%s mismatch (-want +got):\n%s", name, diff)

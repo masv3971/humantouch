@@ -2,15 +2,11 @@ package humantouch
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 func ExampleNew() {
-	// This is for test determinability, but can be used to feed other name lists.
-	FirstnamesFemale = []string{}
-	FirstnamesFemale = append(FirstnamesFemale, "TestFemaleName")
-
-	FirstnamesMale = []string{}
-	FirstnamesMale = append(FirstnamesMale, "TestMaleName")
+	rand.Seed(42)
 
 	human, _ := New(&Config{
 		DistrubutionCFG: &DistributionCfg{
@@ -49,16 +45,12 @@ func ExampleNew() {
 
 	fmt.Println(femaleDist[0].Firstname, maleDist[0].Firstname)
 	// Output:
-	// TestFemaleName TestMaleName TestFemaleName TestMaleName
-	// TestFemaleName TestMaleName
+	// Frida Valentino Birgit Maths
+	// Dilan Rony
 }
 
 func ExampleNew_random() {
-	FirstnamesFemale = []string{}
-	FirstnamesFemale = append(FirstnamesFemale, "TestFemaleName")
-
-	FirstnamesMale = []string{}
-	FirstnamesMale = append(FirstnamesMale, "TestFemaleName")
+	rand.Seed(42)
 
 	human, _ := New(&Config{
 		DistrubutionCFG: &DistributionCfg{
@@ -78,7 +70,7 @@ func ExampleNew_random() {
 	random, _ := human.RandomHuman()
 	fmt.Println("randomHuman", random.Firstname)
 	// Output:
-	// randomDist TestFemaleName
-	// randoms TestFemaleName
-	// randomHuman TestFemaleName
+	// randomDist Adolfina
+	// randoms Esad
+	// randomHuman Celina
 }

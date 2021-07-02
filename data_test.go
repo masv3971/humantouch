@@ -153,3 +153,10 @@ func TestFirstnamesMale_family(t *testing.T) {
 		}
 	}
 }
+
+func TestCountNames(t *testing.T) {
+	t.Log("FirstnamesFemale:", len(FirstnamesFemale), "Possible combination:", len(FirstnamesFemale)*len(Lastnames))
+	t.Log("FirstnamesMale", len(FirstnamesMale), "Possible combination:", len(FirstnamesMale)*len(Lastnames))
+	t.Log("Lastnames", len(Lastnames))
+
+}

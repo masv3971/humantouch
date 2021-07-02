@@ -276,7 +276,7 @@ func TestGenderDistribution(t *testing.T) {
 		genders[r.Gender.General]++
 	}
 
-	if math.Abs(genders[GenderFemale]-genders[GenderMale]) > float64(n)*float64(0.05) {
-		t.Errorf("Error, gender distribution is too narrow, female:%f, male:%f", genders[GenderFemale], genders[GenderMale])
+	if math.Abs(genders[GenderFemale]-genders[GenderMale]) > float64(n)*float64(0.1) {
+		t.Errorf("Error, the gender distribution is too asymmetric, female:%f, male:%f", genders[GenderFemale], genders[GenderMale])
 	}
 }

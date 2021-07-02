@@ -1,11 +1,17 @@
 package humantouch
 
 import (
+	"math/rand"
 	"testing"
+	"time"
 
 	"github.com/google/go-cmp/cmp"
 	personnummer "github.com/personnummer/go"
 )
+
+func init() {
+	rand.Seed(time.Now().Unix())
+}
 
 func TestLuhn(t *testing.T) {
 	got := TestSwedishNIN
