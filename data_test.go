@@ -89,6 +89,39 @@ func TestFirstnamesMale_order(t *testing.T) {
 	}
 }
 
+func TestFirtnamesFemale_whitespaces(t *testing.T) {
+	for _, f := range FirstnamesFemale {
+		if strings.HasPrefix(f, " ") {
+			t.Error("Error, FirstnameFemale has a name that starts with a whitespace", f)
+		}
+		if strings.HasSuffix(f, " ") {
+			t.Error("Error, a name ends with a whitespace", f)
+		}
+	}
+}
+
+func TestFirtnamesMale_whitespaces(t *testing.T) {
+	for _, f := range FirstnamesMale {
+		if strings.HasPrefix(f, " ") {
+			t.Error("Error, a name starts with a whitespace", f)
+		}
+		if strings.HasSuffix(f, " ") {
+			t.Error("Error, a name ends with a whitespace", f)
+		}
+	}
+}
+
+func TestLastname_whitespaces(t *testing.T) {
+	for _, f := range Lastnames {
+		if strings.HasPrefix(f, " ") {
+			t.Error("Error, a name starts with a whitespace", f)
+		}
+		if strings.HasSuffix(f, " ") {
+			t.Error("Error, a name ends with a whitespace", f)
+		}
+	}
+}
+
 func TestFirstnamesFemale_short(t *testing.T) {
 	for _, name := range FirstnamesFemale {
 		if len(name) < 2 {
