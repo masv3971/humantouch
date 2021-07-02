@@ -45,8 +45,8 @@ func ExampleNew() {
 
 	fmt.Println(femaleDist[0].Firstname, maleDist[0].Firstname)
 	// Output:
-	// Frida Valentino Birgit Maths
-	// Dilan Rony
+	// Frida Valentino Veronika Abdull
+	// Hulda Gaute
 }
 
 func ExampleNew_random() {
@@ -72,5 +72,5 @@ func ExampleNew_random() {
 	// Output:
 	// randomDist Adolfina
 	// randoms Esad
-	// randomHuman Celina
+	// randomHuman Lalle
 }

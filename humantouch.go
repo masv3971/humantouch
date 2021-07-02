@@ -61,13 +61,14 @@ func (c *Client) Female() (*Person, error) {
 	person := c.person.new(GenderFemale)
 
 	person.SocialSecurityNumber = c.nin.newSwedish(person)
-
 	return person, nil
 }
 
 // Male return a male person, or error
 func (c *Client) Male() (*Person, error) {
 	person := c.person.new(GenderMale)
+
+	person.SocialSecurityNumber = c.nin.newSwedish(person)
 	return person, nil
 }
 
