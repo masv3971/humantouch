@@ -17,15 +17,17 @@ const (
 	GenderMale = "male"
 	// GenderUnspecified for unspecified gender
 	GenderUnspecified = "unspecified"
-	yearMin           = 1900
-	yearMax           = 2010
+	// GenderUndefined used when gender should be defined but can't be.
+	GenderUndefined = "gender_undefined"
+	yearMin         = 1900
+	yearMax         = 2010
 )
 
 // PersonConfig configuration for person
 type PersonConfig struct {
 }
 
-// AgeData has data about each ageDistrubution
+// AgeData has data about each ageDistribution
 type AgeData struct {
 	Weight float64
 	id     int

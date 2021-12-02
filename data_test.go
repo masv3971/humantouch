@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFirstnamesFemale_uniq(t *testing.T) {
@@ -42,20 +43,47 @@ func TestLastnames_uniq(t *testing.T) {
 	}
 }
 
-func TestFirstnamesMale_uniq(t *testing.T) {
-	temp := make(map[string]bool)
-	want := []string{}
-	got := FirstnamesMale
-
-	for _, fnf := range FirstnamesMale {
-		if _, ok := temp[fnf]; !ok {
-			temp[fnf] = true
-			want = append(want, fnf)
-		}
+func TestUniqList(t *testing.T) {
+	tts := []struct {
+		name    string
+		tempMap map[string]bool
+		list    []string
+		want    []string
+	}{
+		{
+			name:    "FirstnameFemale",
+			tempMap: make(map[string]bool),
+			list:    FirstnamesFemale,
+			want:    []string{},
+		},
+		{
+			name:    "FirstnameMale",
+			tempMap: make(map[string]bool),
+			list:    FirstnamesMale,
+			want:    []string{},
+		},
+		{
+			name:    "NinFemale",
+			tempMap: make(map[string]bool),
+			list:    SkatteverketTestSocialSecurityNumbersFemale,
+			want:    []string{},
+		},
+		{
+			name:    "NinMale",
+			tempMap: make(map[string]bool),
+			list:    SkatteverketTestSocialSecurityNumbersMale,
+			want:    []string{},
+		},
 	}
-
-	if diff := cmp.Diff(want, got); diff != "" {
-		t.Errorf("mismatch (-want +got):\n%s", diff)
+	for _, tt := range tts {
+		t.Run(tt.name, func(t *testing.T) {
+			for _, l := range tt.list {
+				if _, ok := tt.tempMap[l]; !ok {
+					tt.want = append(tt.want, l)
+				}
+			}
+			assert.Equal(t, tt.want, tt.list)
+		})
 	}
 }
 
@@ -89,7 +117,7 @@ func TestFirstnamesMale_order(t *testing.T) {
 	}
 }
 
-func TestFirtnamesFemale_whitespaces(t *testing.T) {
+func TestFirstnamesFemale_whitespaces(t *testing.T) {
 	for _, f := range FirstnamesFemale {
 		if strings.HasPrefix(f, " ") {
 			t.Error("Error, FirstnameFemale has a name that starts with a whitespace", f)
@@ -100,7 +128,7 @@ func TestFirtnamesFemale_whitespaces(t *testing.T) {
 	}
 }
 
-func TestFirtnamesMale_whitespaces(t *testing.T) {
+func TestFirstnamesMale_whitespaces(t *testing.T) {
 	for _, f := range FirstnamesMale {
 		if strings.HasPrefix(f, " ") {
 			t.Error("Error, a name starts with a whitespace", f)
@@ -159,4 +187,38 @@ func TestCountNames(t *testing.T) {
 	t.Log("FirstnamesMale", len(FirstnamesMale), "Possible combination:", len(FirstnamesMale)*len(Lastnames))
 	t.Log("Lastnames", len(Lastnames))
 
+}
+
+func TestSkatteverketTestSocialSecurityNumber(t *testing.T) {
+	tts := []struct {
+		name string
+		list []string
+		want string
+	}{
+		{
+			name: "Female list",
+			list: SkatteverketTestSocialSecurityNumbersFemale,
+			want: GenderFemale,
+		},
+		{
+			name: "Male list",
+			list: SkatteverketTestSocialSecurityNumbersMale,
+			want: GenderMale,
+		},
+	}
+
+	for _, tt := range tts {
+		t.Run(tt.name, func(t *testing.T) {
+			for _, nin := range tt.list {
+				gender, err := genderFromNIN(nin)
+				if !assert.NoError(t, err) {
+					t.FailNow()
+				}
+
+				if gender != tt.want {
+					t.Errorf("Wrong gender for nin: %q in list: %q", nin, tt.name)
+				}
+			}
+		})
+	}
 }

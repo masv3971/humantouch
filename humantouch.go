@@ -5,8 +5,8 @@ import (
 )
 
 var (
-	// ErrAgeDistrubutionNotConfigured error about not configured age distrubution
-	ErrAgeDistrubutionNotConfigured = errors.New("ERR_AGE_DISTRUBUTION_NOT_CONFIGURED")
+	// ErrAgeDistributionNotConfigured error about not configured age distribution
+	ErrAgeDistributionNotConfigured = errors.New("ERR_AGE_DISTRIBUTION_NOT_CONFIGURED")
 	// ErrKeyCollide error for a key that collide
 	ErrKeyCollide = errors.New("ERR_KEY_COLLIDE")
 	// ErrNoKey error for key that does not exists
@@ -23,7 +23,9 @@ type Client struct {
 // Config holds configuration for humantouch
 type Config struct {
 	//Person *PersonConfig
-	DistrubutionCFG *DistributionCfg
+	DistributionCFG                      *DistributionCfg
+	SkatteverketTestSocialSecurityNumber bool
+	SkatteverketTestCoordinationNumber   bool
 }
 
 // New creates a new instance of humantouch

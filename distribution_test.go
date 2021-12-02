@@ -13,8 +13,8 @@ func init() {
 
 func TestCreateYears(t *testing.T) {
 	type want struct {
-		olders  int
-		yungest int
+		olders   int
+		youngest int
 	}
 	tts := []struct {
 		name string
@@ -32,8 +32,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  10,
-				yungest: 0,
+				olders:   10,
+				youngest: 0,
 			},
 		},
 		{
@@ -47,8 +47,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  20,
-				yungest: 10,
+				olders:   20,
+				youngest: 10,
 			},
 		},
 		{
@@ -62,8 +62,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  30,
-				yungest: 20,
+				olders:   30,
+				youngest: 20,
 			},
 		},
 		{
@@ -77,8 +77,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  40,
-				yungest: 30,
+				olders:   40,
+				youngest: 30,
 			},
 		},
 		{
@@ -92,8 +92,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  50,
-				yungest: 40,
+				olders:   50,
+				youngest: 40,
 			},
 		},
 		{
@@ -107,8 +107,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  60,
-				yungest: 50,
+				olders:   60,
+				youngest: 50,
 			},
 		},
 		{
@@ -122,8 +122,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  70,
-				yungest: 60,
+				olders:   70,
+				youngest: 60,
 			},
 		},
 		{
@@ -137,8 +137,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  80,
-				yungest: 70,
+				olders:   80,
+				youngest: 70,
 			},
 		},
 		{
@@ -152,8 +152,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  90,
-				yungest: 80,
+				olders:   90,
+				youngest: 80,
 			},
 		},
 		{
@@ -167,8 +167,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  100,
-				yungest: 90,
+				olders:   100,
+				youngest: 90,
 			},
 		},
 		{
@@ -182,8 +182,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  110,
-				yungest: 100,
+				olders:   110,
+				youngest: 100,
 			},
 		},
 		{
@@ -201,8 +201,8 @@ func TestCreateYears(t *testing.T) {
 				},
 			},
 			want: want{
-				olders:  20,
-				yungest: 0,
+				olders:   20,
+				youngest: 0,
 			},
 		},
 	}
@@ -215,7 +215,7 @@ func TestCreateYears(t *testing.T) {
 
 		for _, i := range got {
 			age := time.Now().Year() - i
-			if age > tt.want.olders || age < tt.want.yungest {
+			if age > tt.want.olders || age < tt.want.youngest {
 				t.Errorf("Name: %q, Error, %d is not int the interval", tt.name, i)
 			}
 		}
@@ -224,7 +224,7 @@ func TestCreateYears(t *testing.T) {
 
 func TestRandomHumans(t *testing.T) {
 	c, _ := New(&Config{
-		DistrubutionCFG: &DistributionCfg{
+		DistributionCFG: &DistributionCfg{
 			Age0to10: AgeData{
 				Weight: 100,
 				id:     0,
@@ -248,7 +248,7 @@ func TestRandomHumans(t *testing.T) {
 
 func TestGenderDistribution(t *testing.T) {
 	c, _ := New(&Config{
-		DistrubutionCFG: &DistributionCfg{
+		DistributionCFG: &DistributionCfg{
 			Age0to10: AgeData{
 				Weight: 100,
 				id:     0,

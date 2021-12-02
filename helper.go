@@ -1,7 +1,10 @@
 package humantouch
 
 import (
+	"math"
 	"math/rand"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -45,4 +48,19 @@ func month(month time.Month) int {
 		return 12
 	}
 	return 0
+}
+
+func genderFromNIN(nin string) (string, error) {
+	nextToLast := strings.Split(nin, "")[len(nin)-2]
+	n, err := strconv.ParseFloat(nextToLast, 64)
+	if err != nil {
+		return GenderUndefined, err
+	}
+
+	switch math.Mod(n, 2) {
+	case 0:
+		return GenderFemale, nil
+	default:
+		return GenderMale, nil
+	}
 }

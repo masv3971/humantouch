@@ -9,7 +9,7 @@ func ExampleNew() {
 	rand.Seed(42)
 
 	human, _ := New(&Config{
-		DistrubutionCFG: &DistributionCfg{
+		DistributionCFG: &DistributionCfg{
 			Age0to10: AgeData{
 				Weight: 100,
 				id:     0,
@@ -53,7 +53,7 @@ func ExampleNew_random() {
 	rand.Seed(42)
 
 	human, _ := New(&Config{
-		DistrubutionCFG: &DistributionCfg{
+		DistributionCFG: &DistributionCfg{
 			Age0to10: AgeData{
 				Weight: 100,
 				id:     0,

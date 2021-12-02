@@ -4,6 +4,8 @@ import (
 	"math/rand"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestRandomGender(t *testing.T) {
@@ -46,5 +48,44 @@ func TestMonth(t *testing.T) {
 		if got != monthN {
 			t.Errorf("got: %d want: %d", got, monthN)
 		}
+	}
+}
+
+func TestGenderFromNIN(t *testing.T) {
+	tts := []struct {
+		name string
+		nin  string
+		want string
+	}{
+		{
+			name: "Female 12",
+			nin:  "199602230323",
+			want: GenderFemale,
+		},
+		{
+			name: "Female 10",
+			nin:  "9602230323",
+			want: GenderFemale,
+		},
+		{
+			name: "Male 12",
+			nin:  "199602230333",
+			want: GenderMale,
+		},
+		{
+			name: "Male 10",
+			nin:  "9602230333",
+			want: GenderMale,
+		},
+	}
+
+	for _, tt := range tts {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := genderFromNIN(tt.nin)
+			if !assert.NoError(t, err) {
+				t.FailNow()
+			}
+			assert.Equal(t, tt.want, got)
+		})
 	}
 }

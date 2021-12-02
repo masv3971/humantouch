@@ -7,7 +7,7 @@ import (
 	rand2 "github.com/milosgajdos/go-estimate/rand"
 )
 
-// DistributionCfg holds configuration regarding the age distrubution
+// DistributionCfg holds configuration regarding the age distribution
 type DistributionCfg struct {
 	Age0to10    AgeData
 	Age10to20   AgeData
@@ -22,7 +22,7 @@ type DistributionCfg struct {
 	Age100to110 AgeData
 }
 
-// Distribution holds both Person and AgeDistrubution
+// Distribution holds both Person and AgeDistribution
 type Distribution struct {
 	Age *DistributionCfg
 	nin *ninClient
@@ -30,7 +30,7 @@ type Distribution struct {
 
 func newDistributionClient(cfg *Config) (*Distribution, error) {
 	if cfg == nil {
-		return nil, ErrAgeDistrubutionNotConfigured
+		return nil, ErrAgeDistributionNotConfigured
 	}
 	nin, err := newNINClient()
 	if err != nil {
@@ -38,14 +38,14 @@ func newDistributionClient(cfg *Config) (*Distribution, error) {
 	}
 
 	c := &Distribution{
-		Age: cfg.DistrubutionCFG,
+		Age: cfg.DistributionCFG,
 		nin: nin,
 	}
 
 	return c, nil
 }
 
-// Females return females according with the distrubution
+// Females return females according with the distribution
 func (d *Distribution) Females(n int) ([]*Person, error) {
 	p, err := d.newWithDistribution(GenderFemale, n)
 	if err != nil {
@@ -54,7 +54,7 @@ func (d *Distribution) Females(n int) ([]*Person, error) {
 	return p, nil
 }
 
-// Males return males according with the distrubution
+// Males return males according with the distribution
 func (d *Distribution) Males(n int) ([]*Person, error) {
 	p, err := d.newWithDistribution(GenderMale, n)
 	if err != nil {
@@ -63,7 +63,7 @@ func (d *Distribution) Males(n int) ([]*Person, error) {
 	return p, nil
 }
 
-// RandomHumans return random humans according with the distrubution
+// RandomHumans return random humans according with the distribution
 func (d *Distribution) RandomHumans(n int) ([]*Person, error) {
 	p, err := d.newWithDistribution("", n)
 	if err != nil {
