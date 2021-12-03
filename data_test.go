@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/masv3971/humantouch/data"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -48,41 +49,37 @@ func TestUniqList(t *testing.T) {
 		name    string
 		tempMap map[string]bool
 		list    []string
-		want    []string
 	}{
 		{
 			name:    "FirstnameFemale",
 			tempMap: make(map[string]bool),
 			list:    FirstnamesFemale,
-			want:    []string{},
 		},
 		{
 			name:    "FirstnameMale",
 			tempMap: make(map[string]bool),
 			list:    FirstnamesMale,
-			want:    []string{},
 		},
 		{
 			name:    "NinFemale",
 			tempMap: make(map[string]bool),
-			list:    SkatteverketTestSocialSecurityNumbersFemale,
-			want:    []string{},
+			list:    data.F2013,
 		},
 		{
 			name:    "NinMale",
 			tempMap: make(map[string]bool),
-			list:    SkatteverketTestSocialSecurityNumbersMale,
-			want:    []string{},
+			list:    data.M2013,
 		},
 	}
 	for _, tt := range tts {
 		t.Run(tt.name, func(t *testing.T) {
+			want := []string{}
 			for _, l := range tt.list {
 				if _, ok := tt.tempMap[l]; !ok {
-					tt.want = append(tt.want, l)
+					want = append(want, l)
 				}
 			}
-			assert.Equal(t, tt.want, tt.list)
+			assert.Equal(t, want, tt.list)
 		})
 	}
 }
@@ -196,13 +193,24 @@ func TestSkatteverketTestSocialSecurityNumber(t *testing.T) {
 		want string
 	}{
 		{
-			name: "Female list",
-			list: SkatteverketTestSocialSecurityNumbersFemale,
+			name: "Female list 2013",
+			list: data.F2013,
+
 			want: GenderFemale,
 		},
 		{
-			name: "Male list",
-			list: SkatteverketTestSocialSecurityNumbersMale,
+			name: "Female list 2014",
+			list: data.F2014,
+			want: GenderFemale,
+		},
+		{
+			name: "Male list 2013",
+			list: data.M2013,
+			want: GenderMale,
+		},
+		{
+			name: "Male list 2014",
+			list: data.M2014,
 			want: GenderMale,
 		},
 	}
@@ -221,4 +229,142 @@ func TestSkatteverketTestSocialSecurityNumber(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestCountNINs(t *testing.T) {
+	listFemales := [][]string{
+		data.F1950,
+		data.F1951,
+		data.F1952,
+		data.F1953,
+		data.F1954,
+		data.F1955,
+		data.F1956,
+		data.F1957,
+		data.F1958,
+		data.F1959,
+		data.F1960,
+		data.F1961,
+		data.F1962,
+		data.F1963,
+		data.F1964,
+		data.F1965,
+		data.F1966,
+		data.F1967,
+		data.F1968,
+		data.F1970,
+		data.F1971,
+
+		data.F1975,
+
+		data.F1979,
+		data.F1980,
+		data.F1981,
+		data.F1982,
+		data.F1983,
+		data.F1984,
+		data.F1985,
+		data.F1986,
+		data.F1987,
+		data.F1989,
+		data.F1990,
+		data.F1991,
+		data.F1992,
+		data.F1993,
+		data.F1994,
+		data.F1995,
+		data.F1996,
+		data.F1997,
+		data.F1998,
+		data.F1999,
+		data.F2000,
+		data.F2001,
+		data.F2002,
+		data.F2003,
+		data.F2004,
+		data.F2005,
+		data.F2006,
+		data.F2007,
+		data.F2008,
+		data.F2009,
+		data.F2010,
+		data.F2011,
+		data.F2012,
+		data.F2013,
+		data.F2014,
+	}
+	listMales := [][]string{
+		data.M1950,
+		data.M1951,
+		data.M1952,
+		data.M1953,
+		data.M1954,
+		data.M1955,
+		data.M1956,
+		data.M1957,
+		data.M1958,
+		data.M1959,
+		data.M1960,
+		data.M1961,
+		data.M1962,
+		data.M1963,
+		data.M1964,
+		data.M1965,
+		data.M1966,
+		data.M1967,
+		data.M1968,
+		data.M1970,
+		data.M1971,
+
+		data.M1975,
+		data.M1979,
+
+		data.M1980,
+		data.M1981,
+		data.M1982,
+		data.M1983,
+		data.M1984,
+		data.M1985,
+		data.M1986,
+		data.M1987,
+		data.M1989,
+		data.M1990,
+		data.M1991,
+		data.M1992,
+		data.M1993,
+		data.M1994,
+		data.M1995,
+		data.M1996,
+		data.M1997,
+		data.M1998,
+		data.M1999,
+		data.M2000,
+		data.M2001,
+		data.M2002,
+		data.M2003,
+		data.M2004,
+		data.M2005,
+		data.M2006,
+		data.M2007,
+		data.M2008,
+		data.M2009,
+		data.M2010,
+		data.M2011,
+		data.M2012,
+		data.M2013,
+		data.M2014,
+	}
+
+	femalesCount := 0
+	malesCount := 0
+
+	for _, f := range listFemales {
+		femalesCount += len(f)
+	}
+	for _, m := range listMales {
+		malesCount += len(m)
+	}
+
+	t.Logf("Total nins: %d, Females: %d, Males: %d", femalesCount+malesCount, femalesCount, malesCount)
+
 }
