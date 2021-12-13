@@ -73,14 +73,14 @@ type SocialSecurityNumber struct {
 
 // BirthYear data
 type BirthYear struct {
-	S            string
-	I            int
-	SLong        string
-	ILong        int
-	CenturyLongS string
-	CenturyLongI int
-	CenturyS     string
-	CenturyI     int
+	S            string // Short year, 1970 -> 70
+	I            int    // Short year, 1970 -> 70
+	SLong        string // Long year, 1970
+	ILong        int    // Long year, 1970
+	CenturyLongS string // Long century, 1970 -> 1900
+	CenturyLongI int    // Long century, 1970 -> 1900
+	CenturyS     string // Short century, 1970 -> 19
+	CenturyI     int    // Short century, 1970 -> 19
 }
 
 // BirthMonth data

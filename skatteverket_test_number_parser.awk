@@ -1,42 +1,42 @@
 #!/usr/bin/awk -f
 
-# Split up skatteverkets test nin into two files, female and male.
+# Split up skatteverkets test nins into seperate files, <nin_gender_year.temp>.
 # First argument is the original file path.
+
+function help(){
+    printf "usage: <inputfile>\n"
+    exit 0
+}
 
 BEGIN {
     filename=ARGV[1]
-    while (( getline line < filename) > 0){
-        year=substr(line, 1,4)
-        if (substr(line, 11, 1) % 2 == 0) 
+    if (filename == "" || filename == "help" )
+        help()
+
+    while (( getline nin < filename) > 0){
+        year=substr(nin, 1,4)
+        if (substr(nin, 11, 1) % 2 == 0) 
         {
-            key=("female:"year)
-            hash[key]++
+            gender="female"
             femaleCounter++
-            if (hash[key] == 8)
-            {
-                hash[key]=0
-                printf "\x22%s\x22,\n", line > ("nin_female_"year".temp")
-            }
-            else 
-             {
-                printf "\x22%s\x22,", line > ("nin_female_"year".temp")
-            }
         }
         else
         {
-            key=("male:"year)
-            hash[key]++
+            gender="male"
             maleCounter++
-            if (hash[key] == 8)
-            {
-                hash[key]=0
-                printf "\x22%s\x22,\n",line > ("nin_male_"year".temp") 
-            }
-            else
-            {
-                printf "\x22%s\x22,", line > ("nin_male_"year".temp")
-            }
         }
+
+         key=(gender":"year)
+         hash[key]++
+         if (hash[key] == 8)
+         {
+             hash[key]=0
+             printf "\x22%s\x22,\n", nin > ("nin_"gender"_"year".temp")
+         }
+         else 
+          {
+             printf "\x22%s\x22,", nin > ("nin_"gender"_"year".temp")
+         }
     }
-    print "males:", maleCounter, "females:", femaleCounter
+    print "males:", maleCounter, "females:", femaleCounter, "total:" femaleCounter+maleCounter
 }

@@ -1,5 +1,7 @@
 package humantouch
 
+//cSpell:disable
+
 var (
 	// FirstnamesFemale consists of female firstnames
 	FirstnamesFemale = []string{
